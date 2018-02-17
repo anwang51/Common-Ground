@@ -36,7 +36,8 @@ def write_article(url):
     # url = 'https://www.reuters.com/article/us-usa-trump-russia-indictment/u-s-charges-russians-with-2016-u-s-election-tampering-to-boost-trump-idUSKCN1G022U'
     text = get_reuters_article_text(url)
     words = text.split(" ")
-    f = open("articles/reuters-" + str(round(random.random(), 5)) + ".txt", "w")
+
+    f = open("articles/reuters-" + text[25:min(40, len(text))] + ".txt", "w")
     for word in words:
       try:
           f.write(word + " ")
