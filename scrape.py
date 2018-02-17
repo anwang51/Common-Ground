@@ -2,6 +2,7 @@ import urllib2 as urllib
 from bs4 import BeautifulSoup
 import random
 import itertools
+import re
 
 def tag_visible(element):
     return element.name == 'p'
@@ -83,13 +84,13 @@ def get_fox_article_text(url):
 
     texts = soup.findAll('p')
     texts = map( lambda tag: tag.string, texts)
-    texts = [elem.strip() for elem in texts if elem is not None]
+    texts = [re.sub(r"\s+", ' ', elem) for elem in texts if elem is not None]
     text = u". ".join(texts)
-    if u'This material may not be published, broadcast, rewritten, or redistributed.' in text:
-        text = text[200:]
-    if u'ADVERTISEMENT' in text:
-        text = text[20:]
-    return text
+    text = text.replace('This material may not be published, broadcast, rewritten, or redistributed. ', '').strip()
+    text = text.replace('FOX News Network, LLC. All rights reserved. All market data delayed 20 minutes. ', '').strip()
+    text = text.replace('Continue Reading Below. ', '').strip()
+    text = text.replace('ADVERTISEMENT', '')
+    return text.strip()
 
 def find_fox_articles(homepage='https://www.foxnews.com'):
     try:
