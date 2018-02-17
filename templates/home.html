@@ -1,0 +1,38 @@
+<<!DOCTYPE html>
+<html>
+	<head>
+		<title>About Us</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.0.0-beta.2-dist/css/bootstrap.min.css')}}">
+	</head>
+	<body>
+		<nav class="navbar sticky-top navbar-light" style="background-color:#262922">
+			<a class="navbar-brand" href="/index">
+    			<img src="{{ url_for('static', filename='real_new_logo.png')}}" width="70" height="60" alt="">
+  			</a>
+  			<div class="justify-content-start ">
+				<!--<div class="row">
+					<a style="color:white; font-size:20px" class="nav-link" href='/about'>About Us</a>
+					<a style="color:white; font-size:20px" class="nav-link" href='/contact'>Contact Us</a>
+				</div>-->
+			</div>
+		</nav>
+		<div class="container" style="width:50%;padding-top:50px; padding-bottom:50px">
+			<h1>COMMON GROUND</h1>
+		</div>
+		<div class="container" style="width:50%;padding-top:0px; padding-bottom:50px">
+			<h2 style="padding-bottom:10px"> Good Neighbor:</h2>
+			<h3>a platform connecting volunteers to aid organizations in disaster relief efforts</h2>
+		</div>
+		<div class="container" style="width:50%">
+			<p style="font-size:20px">Natural disasters, armed conflicts, and other catastrophic events have a huge impact on local communities and threaten the lives and well beings of those affected</p>
+			
+			<img src="{{ url_for('static', filename='current_method.png')}}" width="680" height="370" style="padding-top:20px; padding-bottom:30px" alt="">
+			
+			<p style="font-size:20px"> Good Neighbor aims to empower disaster recovery by connecting skilled volunteers with larger organizations leading disaster relief efforts. By putting people with the right skills at the right place and time, we hope to make the society more resilient in the face of pressure and catastrophe</p>
+
+			<p style="font-size:20px">Whether you are a volunteer with experience in healthcare or disaster response or are a part of a larger organization faced with challenges and in need of people, Good Neighbor hopes to aid you in your action and effort</p>
+		</div>
+	</body>
+</html>
+	
