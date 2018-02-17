@@ -21,6 +21,12 @@ if __name__ == "__main__":
   article = 'us-usa-trump-russia-indictment/u-s-charges-russians-with-2016-u-s-election-tampering-to-boost-trump-idUSKCN1G022U'
   url = news_outlet + article
 	# url.replace('%', '%%')
-  f.open(article, "w")
-  f.write(get_text(url))
+  text = get_text(url)
+  words = text.split(" ")
+  f = open("indictment.txt", "w")
+  for word in words:
+    try:
+      f.write(word + " ")
+    except UnicodeEncodeError:
+      print("failed encoding")
   f.flush()
