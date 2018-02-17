@@ -17,6 +17,10 @@ def get_text(url):
 
 
 if __name__ == "__main__":
-	url = 'https://www.reuters.com/article/us-usa-trump-russia-indictment/u-s-charges-russians-with-2016-u-s-election-tampering-to-boost-trump-idUSKCN1G022U'
+  news_outlet = "https://www.reuters.com/article/"
+  article = 'us-usa-trump-russia-indictment/u-s-charges-russians-with-2016-u-s-election-tampering-to-boost-trump-idUSKCN1G022U'
+  url = news_outlet + article
 	# url.replace('%', '%%')
-	print(get_text(url))
+  f.open(article, "w")
+  f.write(get_text(url))
+  f.flush()

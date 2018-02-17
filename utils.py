@@ -1,11 +1,15 @@
 import re
+from nltk.corpus import stopwords
+
+punctuation_pat = re.compile("[A-Z]*[a-z]*[\.\,]")
+
+"""Following function by D Greenberg and Deduplicator from https://stackoverflow.com/questions/4576077/python-split-text-on-sentences"""
 caps = "([A-Z])"
 prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
 suffixes = "(Inc|Ltd|Jr|Sr|Co)"
 starters = "(Mr|Mrs|Ms|Dr|He\s|She\s|It\s|They\s|Their\s|Our\s|We\s|But\s|However\s|That\s|This\s|Wherever)"
 acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
 websites = "[.](com|net|org|io|gov)"
-punctuation_pat = re.compile("[A-Z]*[a-z]*[\.\,]")
 
 def split_sentences(text):
     text = " " + text + "  "
@@ -38,17 +42,24 @@ def bag_of_words(sentence_lists):
     for line in sentence_lists:
         words = line.split(" ")
         for word in words:
-            count += 1
-            if punctuation_pat.match(word):
-                word = word[:-1]
-            if not (word in word_count):
-                word_count[word] = 1
-            else:
-                word_count[word] += 1
+            if not (word in stopwords.words('english')):
+                count += 1
+                if punctuation_pat.match(word):
+                    word = word[:-1]
+                if not (word in word_count):
+                    word_count[word] = 1
+                else:
+                    word_count[word] += 1
     sorted_words = sorted(word_count, key=lambda x: word_count[x])
-    for word in sorted_words:
-        print(word, float(word_count[word]) / count)
+    sorted_pairs = []
+    i = len(sorted_words) - 1
+    while i >= 0:
+        word = sorted_words[i]
+        sorted_pairs.append((word, word_count[word]))
+        i -= 1
+    return sorted_pairs
 
 f = open("sample.txt")
 f = f.read()
 sentences = split_sentences(f)
+word_counts = bag_of_words(sentences)
