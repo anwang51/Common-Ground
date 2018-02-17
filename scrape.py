@@ -191,16 +191,7 @@ def write_article(text, source):
     f = open("articles/" + source + '-' +text[25:min(40, len(text))] + ".txt", "w")
 
     for word in words:
-        try:
-            f.write(word + " ")
-        except UnicodeEncodeError:
-            try:
-                f.write(word[1:] + " ")
-            except UnicodeEncodeError:
-                try:
-                    f.write(word[:-1] + " ")
-                except UnicodeEncodeError:
-                    pass
+        f.write(word.encode("utf8") + " ")
 
           # print("Warning: bad charcter, recovering")
     f.flush()

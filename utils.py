@@ -124,6 +124,8 @@ def normalize_text(v1):
         magnitude += v1[k] * v1[k]
     magnitude = math.sqrt(magnitude)
     for k in v1:
+        if magnitude == 0:
+            return [0]
         v1[k] = v1[k] / magnitude
     return v1
 

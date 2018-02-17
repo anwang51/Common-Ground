@@ -44,7 +44,19 @@ while i >= 0:
 	i -= 1
 
 processed_articles = []
+text = []
 for gr in groupings:
 	scoring = group_sentences(gr)
 	common = common_keywords(gr)
 	processed_articles.append((common, scoring))
+
+for article in processed_articles:
+	text_list = article[1]
+	temp = ""
+	for sentence in text_list:
+		sentence = sentence[0]
+		if len(sentence) != 0:
+			if sentence[0] == ".":
+				sentence = sentence[2:]
+			temp += sentence + " "
+	text.append(temp)
