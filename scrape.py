@@ -183,6 +183,7 @@ def find_cnn_articles(homepage='https://www.cnn.com/'):
 
 def write_article(text, source):
     # url = 'https://www.reuters.com/article/us-usa-trump-russia-indictment/u-s-charges-russians-with-2016-u-s-election-tampering-to-boost-trump-idUSKCN1G022U'
+    text = text.replace('/', '')
     words = text.split(" ")
     #TO DO CHANGE THIS TAG
     f = open("articles/" + source + '-' +text[25:min(40, len(text))] + ".txt", "w")
@@ -197,7 +198,7 @@ def write_article(text, source):
 
 
 if __name__ == '__main__':
-    """washpo_links = find_washpo_articles()
+    washpo_links = find_washpo_articles()
     washpo_texts = map(get_washpo_article_text, washpo_links)
     map(write_article, washpo_texts, itertools.repeat(('washpo'), len(washpo_texts)))
 
@@ -208,10 +209,11 @@ if __name__ == '__main__':
 
     fox_links = find_fox_articles()
     fox_texts = map(get_fox_article_text, fox_links)
-    map(write_article_fox, fox_texts, itertools.repeat(('fox'), len(fox_texts)))"""
-    cnn_links = find_cnn_articles()
-    cnn_texts = map(get_cnn_article_text, cnn_links)
-    map(write_article, cnn_texts, itertools.repeat(('cnn'), len(cnn_texts)))
+    map(write_article_fox, fox_texts, itertools.repeat(('fox'), len(fox_texts)))
+
+    # cnn_links = find_cnn_articles()
+    # cnn_texts = map(get_cnn_article_text, cnn_links)
+    # map(write_article, cnn_texts, itertools.repeat(('cnn'), len(cnn_texts)))
 
 
 
