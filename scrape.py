@@ -10,7 +10,7 @@ def get_text(url):
   soup = BeautifulSoup(page, 'html.parser')
 
   texts = soup.findAll('p')
-  texts = map(lambda(tag): tag.string, texts)
+  texts = map( lambda tag: tag.string, texts)
   texts = [elem for elem in texts if elem is not None]
   text = u" ".join(texts)
   return text
