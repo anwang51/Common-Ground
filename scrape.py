@@ -204,20 +204,62 @@ def write_article(text, source):
           # print("Warning: bad charcter, recovering")
     f.flush()
 
+def get_nyt_article_text(url):
+    print url
+    # print url
+    page = urllib.urlopen(url)
+
+    soup = BeautifulSoup(page, 'html.parser')
+
+    texts = soup.findAll('p', attrs={'class': 'story-body-text'})
+    texts = map( lambda tag: tag.string, texts)
+    texts = [elem for elem in texts if elem is not None]
+    text = u". ".join(texts)
+    return text
+
+def find_nyt_articles(homepage='https://www.nytimes.com'):
+    page = urllib.urlopen(homepage)
+
+    soup = BeautifulSoup(page, 'html.parser')
+
+    divs = soup.findAll('h2', attrs={'class': 'story-heading'})
+    links = []
+    for div in divs:
+        first_a = div.find('a')
+        if first_a:
+            a_tags = [first_a] + first_a.find_next_siblings('a')
+            for a in a_tags:
+                try:
+                    link = a['href']
+                    if 'graphics' not in link and 'twitter' not in link and 'photos' not in link:   
+                        # print link   
+                        if homepage[6:] in link:
+                            links += [link]
+                        else:
+                            links += [homepage + a['href']]
+                except(KeyError):
+                    pass
+
+    return links
+
 
 if __name__ == '__main__':
-    washpo_links = find_washpo_articles()
-    washpo_texts = map(get_washpo_article_text, washpo_links)
-    map(write_article, washpo_texts, itertools.repeat(('washpo'), len(washpo_texts)))
+    # washpo_links = find_washpo_articles()
+    # washpo_texts = map(get_washpo_article_text, washpo_links)
+    # map(write_article, washpo_texts, itertools.repeat(('washpo'), len(washpo_texts)))
 
 
-    reuters_links = find_reuters_articles()
-    reuters_texts = map(get_reuters_article_text, reuters_links)
-    map(write_article, reuters_texts, itertools.repeat(('reuters'), len(reuters_texts)))
+    # reuters_links = find_reuters_articles()
+    # reuters_texts = map(get_reuters_article_text, reuters_links)
+    # map(write_article, reuters_texts, itertools.repeat(('reuters'), len(reuters_texts)))
 
-    fox_links = find_fox_articles()
-    fox_texts = map(get_fox_article_text, fox_links)
-    map(write_article_fox, fox_texts, itertools.repeat(('fox'), len(fox_texts)))
+    # fox_links = find_fox_articles()
+    # fox_texts = map(get_fox_article_text, fox_links)
+    # map(write_article_fox, fox_texts, itertools.repeat(('fox'), len(fox_texts)))
+
+    nyt_articles = find_nyt_articles()
+    nyt_texts = map(get_nyt_article_text, nyt_articles)
+    map(write_article, nyt_texts, itertools.repeat('nyt', len(nyt_texts)))
 
     # cnn_links = find_cnn_articles()
     # cnn_texts = map(get_cnn_article_text, cnn_links)
