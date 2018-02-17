@@ -60,3 +60,11 @@ for article in processed_articles:
 				sentence = sentence[2:]
 			temp += sentence + " "
 	text.append(temp)
+
+i = 0
+while i < len(text):
+	article = text[i]
+	fw = open("output_articles/" + str(correlations[i][0]) + ".txt", "w")
+	fw.write(article)
+	fw.flush()
+	i += 1
