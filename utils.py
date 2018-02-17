@@ -146,3 +146,8 @@ def scramble_sentences(lst):
 def vectorize_sentence(sentence):
     words = sentence.strip().split()
     return np.array([w2v_model.wv[word] for word in words])
+
+# def verify_contents(article):
+
+# def reorder(sentence):
+
