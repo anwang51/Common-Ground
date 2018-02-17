@@ -161,12 +161,13 @@ def find_cnn_articles(homepage='https://www.cnn.com/'):
     except urllib.HTTPError, e:
         print e.fp.read()
 
-    #soup = BeautifulSoup(page, 'html.parser')
-    #divs = soup.findAll('div', attrs={'class': 'cd__content'})
-    soup = BeautifulSoup(page)
+    soup = BeautifulSoup(page, 'html.parser')
+    divs = soup.findAll('h3', attrs={'class': 'cd__headline'})
+    # soup = BeautifulSoup(page)
 
     print soup.prettify()
     links = []
+    print divs
     for div in divs:
         first_a = div.find('a')
         if first_a:
