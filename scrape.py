@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import random
 import itertools
 import re
+import editdistance
 
 def tag_visible(element):
     return element.name == 'p'
@@ -243,6 +244,46 @@ def find_nyt_articles(homepage='https://www.nytimes.com'):
     return links
 
 
+def find_lat_articles(homepage='https://www.latimes.com/'):
+    page = urllib.urlopen(homepage)
+
+    soup = BeautifulSoup(page, 'html.parser')
+
+    divs = soup.findAll('div', attrs={'class': 'card-content'})
+    links = []
+    for div in divs:
+        first_a = div.find('a')
+        if first_a:
+            a_tags = [first_a] + first_a.find_next_siblings('a')
+            for a in a_tags:
+                try:
+                    link = a['href']
+                    if 'graphics' not in link and 'twitter' not in link and 'photos' not in link:   
+                        # print link   
+                        if link[:4] == 'http':
+                            links += [link]
+                        else:
+                            links += [homepage + a['href']]
+                except(KeyError):
+                    pass
+
+    return links
+
+def get_lat_article_text(url):
+    print url
+    # print url
+    page = urllib.urlopen(url)
+
+    soup = BeautifulSoup(page, 'html.parser')
+
+    texts = soup.findAll('p')
+    texts = map( lambda tag: tag.string, texts)
+    texts = [elem for elem in texts if elem is not None]
+    text = u". ".join(texts)
+    return text
+
+
+
 if __name__ == '__main__':
     # washpo_links = find_washpo_articles()
     # washpo_texts = map(get_washpo_article_text, washpo_links)
@@ -257,9 +298,13 @@ if __name__ == '__main__':
     # fox_texts = map(get_fox_article_text, fox_links)
     # map(write_article_fox, fox_texts, itertools.repeat(('fox'), len(fox_texts)))
 
-    nyt_articles = find_nyt_articles()
-    nyt_texts = map(get_nyt_article_text, nyt_articles)
-    map(write_article, nyt_texts, itertools.repeat('nyt', len(nyt_texts)))
+    # nyt_articles = find_nyt_articles()
+    # nyt_texts = map(get_nyt_article_text, nyt_articles)
+    # map(write_article, nyt_texts, itertools.repeat('nyt', len(nyt_texts)))
+
+    lat_articles = find_lat_articles()
+    lat_texts = map(get_lat_article_text, lat_articles)
+    map(write_article, lat_texts, itertools.repeat('lat', len(lat_texts)))
 
     # cnn_links = find_cnn_articles()
     # cnn_texts = map(get_cnn_article_text, cnn_links)
