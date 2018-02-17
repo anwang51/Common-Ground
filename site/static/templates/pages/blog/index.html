@@ -1,0 +1,23 @@
+<section id="blog" class="blogs">
+    <div class="blog-previews-container">
+        <div class="blog-preview" ng-repeat="post in vm.posts | orderBy:'-timestamp'">
+            <div class="blog-preview-title-container">
+                <div class="blog-preview-heading">
+                    <div class="blog-preview-category">{{post.category}}</div>
+                    <div class="blog-preview-date">{{post.date}}</div>
+                </div>
+                <div class="blog-preview-title">{{post.title}}</div>
+                <div class="blog-preview-author-container">
+                    <div class="blog-preview-author">{{post.author}}</div>
+                </div>
+            </div>
+            <div class="blog-preview-text-container">
+                <div class="blog-preview-text">{{post.preview}}</div>
+                <a ui-sref="post({datePath: post.datePath, titlePath: post.titlePath})">Read More...</a>
+                <div class="blog-preview-tags">
+                    <div class="chip" ng-repeat="tag in post.tags">{{tag}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,65 @@
+<div class="parallax-container">
+  <div class="parallax">
+    <div class="title-cover valign-wrapper">
+      <div class="text-container valign center">
+        <h3 class="white-text">Have any questions?</h3>
+        <p class="white-text">Reach out to us if you have any inquiries.</p>
+      </div>
+    </div>
+    <img class="cover-img" src="img/star-background.jpg">
+  </div>
+</div>
+
+<section class="contact">
+  <div class="container">
+    <h1 class="title uppercase">Contact Us</h1>
+
+    <div class="form-container">
+      <form class="col s12 animate-form" ng-hide="vm.submitted" ng-submit="vm.sendMessage()">
+        <input type="hidden" name="_subject" value="Website Message" />
+        <input type="text" name="_gotcha" style="display:none" />
+        <div class="row">
+          <div input-field class="col s4">
+            <input name="First Name" id="firstName" type="text" ng-model="vm.contact.firstName" class="validate" maxlength="500">
+            <label for="firstName" data-error="Invalid Input">First Name</label>
+          </div>
+          <div input-field class="col s4">
+            <input name="Last Name" id="lastName.1312974038" type="text" ng-model="vm.contact.lastName" class="validate" maxlength="500">
+            <label for="lastName" data-error="Invalid Input">Last Name</label>
+          </div>
+          <div input-field class="col s4">
+            <input name="_replyto" id="email" type="email" ng-model="vm.contact.email" class="validate" maxlength="500">
+            <label for="email" data-error="Invalid Email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div input-field class="col s12">
+            <input name="Subject" id="subject" type="text" ng-model="vm.contact.subject" class="validate" maxlength="500">
+            <label for="subject" data-error="Invalid Input">Subject</label>
+          </div>
+        </div>
+        <div class="row">
+          <div input-field class="col s12">
+            <textarea name="Message" id="message" ng-model="vm.contact.message" class="materialize-textarea" placeholder="Type message here..." maxlength="10000"></textarea>
+            <label for="message">Message</label>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn waves-effect waves-light submit-btn" type="submit">Send
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
+
+      <p class="animate-message" ng-show="vm.submitted">Thank you for reaching out to us! We will respond to your message as soon as possible.</p>
+    </div>
+  </div>
+</section>
+
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+<script>
+  (function($) {
+    $('.parallax').parallax();
+  })(jQuery);
+</script>

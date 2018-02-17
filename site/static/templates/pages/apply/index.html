@@ -1,0 +1,212 @@
+ <div class="parallax-container">
+  <div class="parallax">
+    <div class="title-cover valign-wrapper">
+      <div class="text-container valign center">
+        <h3 class="white-text">For Members</h3>
+        <p class="white-text">We’re a family of innovators and programmers dedicated to developing intelligent software.</p>
+      </div>
+    </div>
+    <img class="cover-img" src="img/star-background.jpg">
+  </div>
+</div>
+
+<section class="apply" ng-init="vm.init()">
+  <div class="container">
+    <a id="values" class="anchor"></a>
+    <div class="row"></div>
+    <div class="row">
+      <div class="tagline">
+        <div class="row center">
+          <h1 class="uppercase">Values</h1>
+        </div>
+      </div>
+      <div class="col s12 m4 center">
+        <img class="icon" src="img/icons/craft.svg"></img>
+        <h2>Craft</h2>
+        <p>We value not only past experience, but also intuition and the ability to think strategically.</p>
+      </div>
+      <div class="col s12 m4 center">
+        <img class="icon" src="img/icons/dedication.svg"></img>
+        <h2>Dedication</h2>
+        <p>Members are chosen because they have demonstrated an incredible work ethic.</p>
+      </div>
+      <div class="col s12 m4 center">
+        <img class="icon" src="img/icons/integrity.svg"></img>
+        <h2>Integrity</h2>
+        <p>We expect members to be genuinely good people at heart.</p>
+      </div>
+    </div>
+
+    <div class="row"></div>
+    <div class="divider"></div>
+
+    <a id="process" class="anchor"></a>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row">
+      <div class="tagline">
+        <div class="row center">
+          <h1 class="uppercase">Process</h1>
+        </div>
+      </div>
+      <div class="col s12 offset-m2 m4 center">
+        <img class="icon" src="img/icons/application.svg"></img>
+        <h2>Application Review</h2>
+        <p>All online applications are reviewed by our officer group and the strongest applicants are selected.</p>
+      </div>
+
+      <div class="col s12 m4 center">
+        <img class="icon" src="img/icons/interviews.svg"></img>
+        <h2>Final Interviews</h2>
+        <p>Selected candidates receive final interviews to share their passion, background, and goals.</p>
+      </div>
+    </div>
+
+    <div class="row"></div>
+    <a id="application" class="anchor"></a>
+    <div class="row"></div>
+    <div class="row"></div>
+
+    <h1 class="title uppercase">Spring 2018 Application Form</h1>
+    <div class="divider"></div>
+    <div class="form-container valign-wrapper" ng-show="vm.pastDeadline()">
+      <p class="center-align">Applications are closed for the Spring 2018 semester. If you are interested in what we do, please go to our Contact page to reach out to us. Applications will reopen for the Spring 2017 semester at the beginning of January.</p>
+    </div>
+    <div ng-hide="vm.pastDeadline()">
+      <p>Submitted applications will be reviewed on a rolling basis. Applications must be submitted by January 25, 2018 @ 11:59 PM PST in order to be considered for Spring 2018 membership. We will not be able to accept any later submissions.</p>
+      <nav class="breadcrumb-nav">
+        <div class="nav-wrapper">
+          <div class="col s12">
+            <a ng-model="page" ng-value="1" ng-click="vm.changePage(1)" class="breadcrumb">Basic</a>
+            <a ng-model="page" ng-value="2" ng-click="vm.changePage(2)" class="breadcrumb" ng-class="{disabled: vm.page < 2}">Responses</a>
+            <a ng-model="page" ng-value="3" ng-click="vm.changePage(3)" class="breadcrumb" ng-class="{disabled: vm.page < 3}">Additional</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="form-container">
+        <form class="col s12 animate-form" ng-hide="vm.submitted" ng-submit="vm.submitForm()" novalidate>
+          <input type="hidden" name="_subject" value="Launchpad Member Application" />
+          <input type="text" name="_gotcha" style="display:none" />
+          <div ng-show="vm.page == 1">
+            <div class="form-container">
+              <div class="row">
+                <div input-field class="col s4">
+                  <input name="First Name" id="firstName" type="text" ng-model="vm.basic.firstName" class="validate">
+                  <label for="firstName" data-error="Invalid Input" maxlength="50">First Name*</label>
+                </div>
+                <div input-field class="col s4">
+                  <input name="Last Name" id="lastName" type="text" ng-model="vm.basic.lastName" class="validate">
+                  <label for="lastName" data-error="Invalid Input" maxlength="50">Last Name*</label>
+                </div>
+                <div class="input-field col s4">
+                  <select name="Year" ng-model="vm.basic.year" material-select watch required="required">
+                    <option value disabled selected>Choose</option>
+                    <option ng-repeat="year in vm.years">{{year}}</option>
+                  </select>
+                  <label>Year*</label>
+                </div>
+              </div>
+              <div class="row">
+                <div input-field class="col s12">
+                  <input name="Major" id="major" type="text" ng-model="vm.basic.major" class="validate">
+                  <label for="major" data-error="Invalid Input" maxlength="500">Major(s)*</label>
+                </div>
+              </div>
+              <div class="row">
+                <div input-field class="col s4">
+                  <input name="_replyto" id="email" type="email" ng-model="vm.basic.email" class="validate">
+                  <label for="email" data-error="Invalid Email" maxlength="500">Email*</label>
+                </div>
+                <div input-field class="col s4">
+                  <input name="Phone" id="phone" type="tel" ng-model="vm.basic.phone" class="validate">
+                  <label for="phone" data-error="Invalid Phone Number" maxlength="200">Phone Number*</label>
+                </div>
+                <div class="input-field col s4">
+                  <select name="Position" ng-model="vm.basic.position" material-select watch required="required">
+                    <option value disabled selected>Choose</option>
+                    <option ng-repeat="position in vm.positions">{{position}}</option>
+                  </select>
+                  <label>Position*</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="file-field input-field col s12">
+                  <div class="btn">
+                    <span>Choose File</span>
+                    <input id="resume" type="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input name="Resume" class="file-path validate" type="text" ng-model="vm.basic.resume" placeholder="Upload Resume (PDF only)">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <button class="btn waves-effect waves-light form-nav-btn right" type="button" name="action" ng-click="vm.next(vm.basic)">Next
+                <i class="material-icons right">done</i>
+              </button>
+            </div>
+          </div>
+
+          <div ng-show="vm.page == 2">
+            <div class="form-container">
+              <div class="row">
+                <div input-field class="col s12">
+                  <textarea name="Project" id="project" ng-model="vm.responses.project" class="materialize-textarea" placeholder="(max 200 words)" maxlength="2000" ng-change="vm.updateTextArea1()"></textarea>
+                  <label>Describe the project you learned the most from.*</label>
+                  <p class="wordCount">{{vm.wordCount1}}/200</p>
+                </div>
+              </div>
+              <div class="row">
+                <div input-field class="col s12">
+                  <textarea name="Interest" id="interest" ng-model="vm.responses.interest" class="materialize-textarea" placeholder="(max 200 words)" maxlength="2000" ng-change="vm.updateTextArea2()"></textarea>
+                  <label>What made you most interested in Launchpad?*</label>
+                  <p class="wordCount">{{vm.wordCount2}}/200</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <button class="btn waves-effect waves-light form-nav-btn right" type="button" name="action" ng-click="vm.next(vm.responses)">Next
+                <i class="material-icons right">done</i>
+              </button>
+              <button class="btn waves-effect waves-light form-nav-btn right" type="button" name="action" ng-click="vm.prev()">Previous</button>
+            </div>
+          </div>
+
+          <div ng-show="vm.page == 3">
+            <div class="form-container">
+              <div class="row">
+                <div input-field class="col s12">
+                  <textarea name="Optional" id="optional" ng-model="vm.additional.optional" class="materialize-textarea" placeholder="(max 200 words)" maxlength="8000" ng-change="vm.updateTextArea3()"></textarea>
+                  <label>Any additional comments (did you talk to any of us at an event, a cool project you’ve worked on, why you want to join Launchpad, a hard problem you’ve solved, or anything else)?</label>
+                  <p class="wordCount">{{vm.wordCount3}}/200</p>
+                </div>
+              </div>
+              <div class="row">
+                <div input-field class="col s12">
+                  <input name="Github" id="github" type="text" ng-model="vm.additional.github" class="validate">
+                  <label for="github" data-error="Invalid URL" maxlength="200">Github Username</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <button class="btn waves-effect waves-light form-nav-btn right" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+              </button>
+              <button class="btn waves-effect waves-light form-nav-btn right" type="button" name="action" ng-click="vm.prev()">Previous</button>
+            </div>
+          </div>
+        </form>
+
+        <p class="animate-message" ng-show="vm.submitted">Thank you for your interest in Launchpad! We'll reach out to you as soon as possible regarding your application status. If you have any questions or want to schedule a coffee chat, feel free to reach out to us.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function($) {
+    $('.parallax').parallax();
+  })(jQuery);
+</script>
