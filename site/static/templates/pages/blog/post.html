@@ -1,0 +1,27 @@
+<div class="blog-post">
+    <div class="close-button" ui-sref="blog">
+        <i class="material-icons">keyboard_arrow_left</i>
+        <span class="back-text">Go Back</span>
+    </div>
+    <div class="blog-container">
+        <div class="blog-title-container">
+            <div class="blog-heading">
+                <div class="blog-category">{{category}}</div>
+                <div class="blog-date">{{date}}</div>
+            </div>
+            <div class="blog-title">{{name}}</div>
+            <div class="blog-author-container">
+                <div class="blog-author">{{author}}</div>
+            </div>
+        </div>
+        <div class="blog-text-container">
+            <div class="blog-text"><ng-transclude></ng-transclude></div>
+            <div class="blog-tags">
+                <div class="chip" ng-repeat="tag in tags">{{tag}}</div>
+            </div>
+        </div>
+        <section class="blog-comments">
+            <fb-comments page-href="http://callaunchpad.org/#/{{datePath}}/{{titlePath}}"</div>
+        </section>
+    </div>
+</div>

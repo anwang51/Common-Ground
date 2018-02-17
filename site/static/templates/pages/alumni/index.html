@@ -1,0 +1,54 @@
+<div class="parallax-container">
+  <div class="parallax">
+    <div class="title-cover valign-wrapper">
+      <div class="text-container valign center">
+        <h3 class="white-text">Alumni</h3>
+        <p class="white-text">Our accomplished alumni have applied their experiences from Launchpad at various companies and research groups.</p>
+      </div>
+    </div>
+    <img class="cover-img" src="img/star-background.jpg">
+  </div>
+</div>
+
+<div class="alumni-page">
+	<section id="alumni-display" class="overview">
+		<div class="container">
+			<div class="row">
+				<div class="col s12 m6 l6">
+					<alumni-list list="vm.alumni_col_1"></alumni-list>
+				</div>
+				<div class="col s12 m6 l6">
+					<alumni-list list="vm.alumni_col_2"></alumni-list>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="companies">
+		<div class="sponsors-container">
+			<div class="tagline">
+				<div class="row center">
+					<h1>Companies we have worked at</h1>
+				</div>
+			</div>
+			<a ng-repeat="co in vm.connections" href="{{co.url}}" target="_blank"><img class="sponsor title sponsor-too-small" data-src="{{co.image}}" src="{{co.image}}" alt="{{co.name}}"/></a>
+		</div>
+	</section>
+
+	<section class="companies">
+		<div class="sponsors-container">
+			<div class="tagline">
+				<div class="row center">
+					<h1>Research we have been involved in</h1>
+				</div>
+			</div>
+			<a ng-repeat="re in vm.research" href="{{re.url}}" target="_blank"><img class="sponsor title sponsor-too-small" data-src="{{re.image}}" src="{{re.image}}" alt="{{re.name}}"/></a>
+		</div>
+	</section>
+</div>
+
+<script>
+  (function($) {
+    $('.parallax').parallax();
+  })(jQuery);
+</script>

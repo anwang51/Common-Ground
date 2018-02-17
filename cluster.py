@@ -48,7 +48,8 @@ def cluster(vectorized):
 		processed_vectorized.append(np.asarray(temp_vec))
 
 	processed_vectorized = np.asarray(processed_vectorized)
-	kmeans = KMeans(n_clusters=(len(processed_vectorized) / 3)).fit(processed_vectorized)
+	# kmeans = KMeans().fit(processed_vectorized)
+	kmeans = KMeans(n_clusters=(len(processed_vectorized) / 2)).fit(processed_vectorized)
 	return kmeans.labels_
 
 def common_keywords(grouping):
