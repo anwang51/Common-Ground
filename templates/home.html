@@ -1,14 +1,14 @@
 <<!DOCTYPE html>
 <html>
 	<head>
-		<title>About Us</title>
+		<title>Commmon Ground</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.0.0-beta.2-dist/css/bootstrap.min.css')}}">
 	</head>
 	<body>
 		<nav class="navbar sticky-top navbar-light" style="background-color:#262922">
 			<a class="navbar-brand" href="/index">
-    			<img src="{{ url_for('static', filename='real_new_logo.png')}}" width="70" height="60" alt="">
+    			<!-- <img src="{{ url_for('static', filename='real_new_logo.png')}}" width="70" height="60" alt=""> -->
   			</a>
   			<div class="justify-content-start ">
 				<!--<div class="row">
@@ -22,16 +22,26 @@
 		</div>
 		<div class="container" style="width:50%;padding-top:0px; padding-bottom:50px">
 			<h2 style="padding-bottom:10px"> Good Neighbor:</h2>
-			<h3>a platform connecting volunteers to aid organizations in disaster relief efforts</h2>
+			<p style="font-size:20px">Fake news has become an increasingly prevlenet and problematic aspectof the modern media landscape. By appealing to our inate trust in news agencies, it both weakens the pillars of our democracty and imapcts our abilities to respecfully discuss with each other.</p>
 		</div>
 		<div class="container" style="width:50%">
-			<p style="font-size:20px">Natural disasters, armed conflicts, and other catastrophic events have a huge impact on local communities and threaten the lives and well beings of those affected</p>
+			<p style="font-size:20px">Common Ground addresses both traditional fake news (those masquerading as legitimate news agencies) and also the increasely politicized mainstream media through the same technique: unsupervised cross source news generation</p>
 			
-			<img src="{{ url_for('static', filename='current_method.png')}}" width="680" height="370" style="padding-top:20px; padding-bottom:30px" alt="">
-			
-			<p style="font-size:20px"> Good Neighbor aims to empower disaster recovery by connecting skilled volunteers with larger organizations leading disaster relief efforts. By putting people with the right skills at the right place and time, we hope to make the society more resilient in the face of pressure and catastrophe</p>
+			<p style="font-size:20px"> Our general approach is to scrape the web for related new article. We then perform k-means clustering and obtain clusters of related news articles. Using this information, we mark up each source, findng claims the different sources have in common, which we weave together into a new article on each topic.</p>
 
-			<p style="font-size:20px">Whether you are a volunteer with experience in healthcare or disaster response or are a part of a larger organization faced with challenges and in need of people, Good Neighbor hopes to aid you in your action and effort</p>
+
+			<p style="font-size:20px">Our Sources:</p> 
+			<img src="../templates/wp-logo.jpg" alternate="The Washington Post"/>
+			<img src="../templates/reuters-logo.jpg" alternate="Reuters"/>
+			<img src="../templates/fox-logo.jpg" alternate="Fox News"/>
+			<img src="../templates/nyt-logo.jpg" alternate="The New York Times"/>
+			<img src="../templates/lat-logo.jpg" alternate="The LA Times"/>
+
+
+
+
+			
+			
 		</div>
 	</body>
 </html>
