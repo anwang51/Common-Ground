@@ -7,7 +7,7 @@ from cluster import common_keywords
 from utils import vectorize_text
 from utils import split_sentences
 
-CUTOFF = 0
+CUTOFF = 0.55
 
 articles = []
 for file in os.listdir("articles/"):

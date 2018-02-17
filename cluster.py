@@ -15,7 +15,6 @@ def average_relation(vectorized):
 		j = i + 1
 		while j < len(vectorized):
 			correlation += correlate_text(vectorized[i].vector, vectorized[j].vector)
-			print(correlation)
 			j += 1
 			num_comparisons += 1
 		i += 1
@@ -49,7 +48,7 @@ def cluster(vectorized):
 
 	processed_vectorized = np.asarray(processed_vectorized)
 	# kmeans = KMeans().fit(processed_vectorized)
-	kmeans = KMeans(n_clusters=(len(processed_vectorized) / 2)).fit(processed_vectorized)
+	kmeans = KMeans(n_clusters=(len(processed_vectorized) / 3)).fit(processed_vectorized)
 	return kmeans.labels_
 
 def common_keywords(grouping):
