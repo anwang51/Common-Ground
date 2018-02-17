@@ -136,3 +136,13 @@ def correlate_text(v1, v2):
     v1 = normalize_text(v1)
     v2 = normalize_text(v2)
     return dot_text(v1, v2)
+
+def scramble_sentences(lst):
+    #returns a tuple (scrambled list, original indices)
+    org_indices = np.random.permutation(len(lst))
+    scrambled = [lst[i] for i in org_indices]
+    return (scrambled, org_indices)
+
+def vectorize_sentence(sentence):
+    words = sentence.strip().split()
+    return np.array([w2v_model.wv[word] for word in words])
