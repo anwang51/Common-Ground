@@ -1,5 +1,6 @@
 import re
 from nltk.corpus import stopwords
+import math
 
 punctuation_pat = re.compile("[A-Z]*[a-z]*[\.\,]")
 
@@ -39,7 +40,8 @@ def split_sentences(text):
     sentences = [s.strip() for s in sentences]
     return sentences
 
-def bag_of_words(sentence_lists):
+def bag_of_words(text):
+    sentence_lists = split_sentences(text)
     word_count = {}
     count = 0
     for line in sentence_lists:
@@ -72,7 +74,7 @@ def isPlural(word):
 
 def summarize(txt, num_sentences):
     sentences = split_sentences(txt)
-    word_counts = bag_of_words(sentences)
+    word_counts = bag_of_words(txt)
     word_dict = {}
     for pair in word_counts:
         word_dict[pair[0]] = pair[1]
@@ -96,3 +98,46 @@ def summarize(txt, num_sentences):
     for i in s_indices:
         summarized_text.append(sentences[i])
     return summarized_text
+
+def vectorize_text(text):
+    words = bag_of_words(text)
+    if len(words) < 20:
+        diff = 20 - len(words)
+        for _ in range(diff):
+            words.append(("N/A", -1))
+    else:
+        words = words[0:20]
+    sum_weight = 0
+    for word in words:
+        sum_weight += word[1]
+    word_dict = {}
+    for pair in words:
+        word_dict[pair[0]] = pair[1] / sum_weight
+    return word_dict
+
+def normalize_text(v1):
+    magnitude = 0
+    for k in v1:
+        magnitude += v1[k] * v1[k]
+    magnitude = math.sqrt(magnitude)
+    for k in v1:
+        v1[k] = v1[k] / magnitude
+    return v1
+
+def dot_text(v1, v2):
+    dot_sum = 0
+    for k in v1:
+        if k in v2:
+            dot_sum += v1[k] * v2[k]
+    return dot_sum
+
+def correlate_text(v1, v2):
+    relation = 0
+    v1 = normalize_text(v1)
+    v2 = normalize_text(v2)
+    return dot_text(v1, v2)
+
+text = open("indictment.txt", "r").read()
+v_t = vectorize_text(text)
+correlation = correlate_text(v_t, v_t)
+print(correlation)
