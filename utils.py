@@ -136,8 +136,3 @@ def correlate_text(v1, v2):
     v1 = normalize_text(v1)
     v2 = normalize_text(v2)
     return dot_text(v1, v2)
-
-text = open("indictment.txt", "r").read()
-v_t = vectorize_text(text)
-correlation = correlate_text(v_t, v_t)
-print(correlation)
