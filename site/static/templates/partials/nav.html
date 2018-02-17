@@ -1,0 +1,80 @@
+<div class="navbar-fixed">
+  <ul id="about-dropdown" class="dropdown-content">
+    <li><a ui-sref="about({'#': 'overview'})">Overview</a></li>
+    <li><a ui-sref="about({'#': 'traditions'})">Traditions</a></li>
+    <li><a ui-sref="about({'#': 'team'})">Team</a></li>
+  </ul>
+
+  <ul id="projects-dropdown" class="dropdown-content">
+    <li><a ui-sref="projects({'#': 'purpose'})">Purpose</a></li>
+    <li><a ui-sref="projects({'#': 'current'})">Past</a></li>
+  </ul>
+
+  <ul id="companies-dropdown" class="dropdown-content">
+    <li><a ui-sref="companies({'#': 'request'})">Request</a></li>
+    <li><a ui-sref="companies({'#': 'sponsors'})">Sponsors</a></li>
+  </ul>
+
+  <ul id="apply-dropdown" class="dropdown-content">
+    <li><a ui-sref="apply({'#': 'values'})">Values</a></li>
+    <li><a ui-sref="apply({'#': 'process'})">Process</a></li>
+    <li><a ui-sref="apply({'#': 'application'})">Application</a></li>
+  </ul>
+
+  <nav class="white">
+    <div class="nav-wrapper">
+      <a ui-sref="about" class="brand-logo ">
+        <div class="valign-wrapper logo-wrapper">
+          <div class="logo valign">
+           <img src="img/long-logo.png">
+          </div>
+        </div>
+      </a>
+      <a href="javascript: void(0)" data-activates="mobile-demo" class="button-collapse black-text"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class="dropdown-button" ui-sref="about" data-activates="about-dropdown">About</a></li>
+        <li><a class="dropdown-button" ui-sref="showcase">Showcase</a></li>
+        <li><a class="dropdown-button" ui-sref="projects" data-activates="projects-dropdown">Projects</a></li>
+        <li><a class="dropdown-button" ui-sref="companies" data-activates="companies-dropdown">Companies</a></li>
+        <li><a class="dropdown-button" ui-sref="contact">Contact</a></li>
+        <li><a class="dropdown-button" ui-sref="alumni">Alumni</a></li>
+        <li><a class="dropdown-button" href="https://lab.callaunchpad.org" target="_blank">Web Lab</a></li>
+        <li><a class="dropdown-button" ui-sref="blog">Blog</a></li>
+        <li><a class="dropdown-button apply-btn" ui-sref="apply" data-activates="apply-dropdown">Apply</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a ui-sref="about">About</a></li>
+        <li><a ui-sref="showcase">Showcase</a></li>
+        <li><a ui-sref="projects">Projects</a></li>
+        <li><a ui-sref="companies">Companies</a></li>
+        <li><a ui-sref="contact">Contact</a></li>
+        <li><a ui-sref="alumni">Alumni</a></li>
+        <li><a href="https://lab.callaunchpad.org" target="_blank">Web Lab</a></li>
+        <li><a ui-sref="blog">Blog</a></li>
+        <li><a class="apply-btn" ui-sref="apply">Apply</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<script>
+  $( document ).ready(function(){
+    $(".dropdown-button").dropdown({ hover: true, belowOrigin: true});
+    $('.button-collapse').sideNav({
+      edge: 'left',
+      closeOnClick: true,
+      draggable: true
+    });
+    $('.side-nav a').click(function() {
+      $('.button-collapse').sideNav('hide');
+    });
+    var dragTarget = document.getElementsByClassName('drag-target')[0];
+    var mc = new Hammer.Manager(dragTarget);
+    var Swipe = new Hammer.Swipe();
+    var Tap = new Hammer.Tap();
+    mc.add(Swipe);
+    mc.on("swipeleft", function(ev) {
+    	$("#sidenav-overlay").remove();
+    });
+  })
+</script>

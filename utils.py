@@ -1,6 +1,9 @@
 import re
 from nltk.corpus import stopwords
 import math
+import random
+import glob
+import numpy as np
 
 punctuation_pat = re.compile("[A-Z]*[a-z]*[\.\,]")
 
@@ -37,7 +40,7 @@ def split_sentences(text):
     text = text.replace("<prd>",".")
     sentences = text.split("<stop>")
     sentences = sentences[:-1]
-    sentences = [s.strip() for s in sentences]
+    sentences = [s.strip() for s in sentences if s.strip()!="."]
     return sentences
 
 def bag_of_words(text):
@@ -143,6 +146,29 @@ def scramble_sentences(lst):
     scrambled = [lst[i] for i in org_indices]
     return (scrambled, org_indices)
 
-def vectorize_sentence(sentence):
-    words = sentence.strip().split()
-    return np.array([w2v_model.wv[word] for word in words])
+# def vectorize_sentence(sentence):
+#     words = sentence.strip().split()
+#     return np.array([w2v_model.wv[word] for word in words])
+
+# def verify_contents(article):
+
+# def reorder(sentence):
+
+# articlez = dict()
+
+# def gather():
+#     path = 'articles/*.txt'   
+#     files=glob.glob(path)   
+#     for file in files:     
+#         f=open(file, 'r')
+#         articlez[file] = f.read()   
+#         f.close() 
+
+# def generate():
+#     sentences = split_sentences(articlez[random.choice(articlez.keys())])
+#     sents, indices = scramble_sentences(sentences)
+#     vect_sents = [vectorize_sentence(s) for s in sents]
+#     return (vect_sents, indices)
+
+# gather()
+# generate()

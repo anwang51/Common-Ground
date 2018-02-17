@@ -7,7 +7,7 @@ from cluster import common_keywords
 from utils import vectorize_text
 from utils import split_sentences
 
-CUTOFF = 0.73
+CUTOFF = 0.55
 
 articles = []
 for file in os.listdir("articles/"):
@@ -25,11 +25,11 @@ for i in range(len(groups)):
 
 correlations = []
 for group in groupings:
-	correlations.append(average_relation(group))
+	correlations.append((average_relation(group), len(group)))
 
 i = len(correlations) - 1
 while i >= 0:
-	corr = correlations[i]
+	corr = correlations[i][0]
 	if corr < CUTOFF:
 		correlations.pop(i)
 		groupings.pop(i)
@@ -46,5 +46,5 @@ while i >= 0:
 processed_articles = []
 for gr in groupings:
 	scoring = group_sentences(gr)
-	scoring = sorted(scoring, key=lambda x: x[1])[0:7]
-	processed_articles.append(scoring)
+	common = common_keywords(gr)
+	processed_articles.append((common, scoring))

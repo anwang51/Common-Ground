@@ -12,12 +12,14 @@ def average_relation(vectorized):
 	num = len(vectorized)
 	num_comparisons = 0
 	while i < len(vectorized):
-		j = i
+		j = i + 1
 		while j < len(vectorized):
 			correlation += correlate_text(vectorized[i].vector, vectorized[j].vector)
 			j += 1
 			num_comparisons += 1
 		i += 1
+	if num_comparisons == 0:
+		return 1
 	return correlation / num_comparisons
 
 def cluster(vectorized):
@@ -45,7 +47,8 @@ def cluster(vectorized):
 		processed_vectorized.append(np.asarray(temp_vec))
 
 	processed_vectorized = np.asarray(processed_vectorized)
-	kmeans = KMeans(n_clusters=(len(processed_vectorized) / 2)).fit(processed_vectorized)
+	# kmeans = KMeans().fit(processed_vectorized)
+	kmeans = KMeans(n_clusters=(len(processed_vectorized) / 3)).fit(processed_vectorized)
 	return kmeans.labels_
 
 def common_keywords(grouping):
@@ -74,7 +77,7 @@ def group_sentences(grouping):
 	analyzer = SentimentIntensityAnalyzer()
 	sentences = []
 	for article in grouping:
-		summarized = summarize(article.content, 10)
+		summarized = summarize(article.content, 15)
 		processed_summarized = []
 		for sentence in summarized:
 			processed_summarized.append((sentence, "source " + article.source))
@@ -88,4 +91,10 @@ def group_sentences(grouping):
 			if word in sentence[0]:
 				final_score += abs(score["compound"] - common[word])
 		scoring.append((sentence, final_score))
-	return scoring
+	scoring = sorted(scoring, key=lambda x: x[1])[0:10]
+	scoring = [sentence[0] for sentence in scoring]
+	final_output = []
+	for sentence in sentences:
+		if sentence in scoring:
+			final_output.append(sentence)
+	return final_output
