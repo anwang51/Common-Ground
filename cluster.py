@@ -45,7 +45,7 @@ def cluster(vectorized):
 		processed_vectorized.append(np.asarray(temp_vec))
 
 	processed_vectorized = np.asarray(processed_vectorized)
-	kmeans = KMeans(n_clusters=(len(vectorized) / 2)).fit(processed_vectorized)
+	kmeans = KMeans(n_clusters=(len(processed_vectorized) / 2)).fit(processed_vectorized)
 	return kmeans.labels_
 
 def common_keywords(grouping):
@@ -83,7 +83,6 @@ def group_sentences(grouping):
 	scoring = []
 	for sentence in sentences:
 		final_score = 0
-		print(sentence)
 		score = analyzer.polarity_scores(sentence[0])
 		for word in common:
 			if word in sentence[0]:
