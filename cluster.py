@@ -12,7 +12,7 @@ def average_relation(vectorized):
 	while i < len(vectorized):
 		j = i
 		while j < len(vectorized):
-			correlation += correlate_text(vectorized[i], vectorized[j])
+			correlation += correlate_text(vectorized[i].vector, vectorized[j].vector)
 			j += 1
 			num_comparisons += 1
 		i += 1
@@ -20,7 +20,8 @@ def average_relation(vectorized):
 
 def cluster(vectorized):
 	unique_words = set()
-	for vector in vectorized:
+	for article in vectorized:
+		vector = article.vector
 		for key in vector:
 			unique_words.add(key)
 
@@ -32,7 +33,8 @@ def cluster(vectorized):
 
 	dim = len(attribute_vector)
 	processed_vectorized = []
-	for v in vectorized:
+	for article in vectorized:
+		v = article.vector
 		temp_vec = [0 for _ in range(dim)]
 		for key in v:
 			ind = attribute_vector[key]

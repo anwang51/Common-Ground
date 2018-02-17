@@ -1,29 +1,45 @@
 import os
+from articles import Article
 from cluster import cluster
 from cluster import average_relation
 from utils import vectorize_text
+from utils import split_sentences
+
+CUTOFF = 0.73
 
 articles = []
 for file in os.listdir("articles/"):
     if file.endswith(".txt"):
-        articles.append(open(os.path.join("articles/", file), "r").read())
-
-vectorized = []
-for file in articles:
-	vectorized.append(vectorize_text(file))
-
-groups = cluster(vectorized)
+    	text = open(os.path.join("articles/", file), "r").read()
+    	source = file[:file.index("-")]
+        articles.append(Article(text, source))
+groups = cluster(articles)
 num_groups = max(groups) + 1
-groupings_articles = [[] for _ in range(num_groups)]
-groupings_vectorized = [[] for _ in range(num_groups)]
+groupings = [[] for _ in range(num_groups)]
 for i in range(len(groups)):
 	group_num = groups[i]
 	article = articles[i]
-	vector = vectorized[i]
-	groupings_articles[group_num].append(article)
-	groupings_vectorized[group_num].append(vector)
+	groupings[group_num].append(article)
 
 correlations = []
-for group in groupings_vectorized:
+for group in groupings:
 	correlations.append(average_relation(group))
-print(correlations)
+
+i = len(correlations) - 1
+while i >= 0:
+	corr = correlations[i]
+	if corr < CUTOFF:
+		correlations.pop(i)
+		groupings.pop(i)
+	i -= 1
+
+i = len(groupings) - 1
+while i >= 0:
+	group = groupings[i]
+	if len(group) <= 1:
+		correlations.pop(i)
+		groupings.pop(i)
+	i -= 1
+
+
+gr1 = groupings[0]
