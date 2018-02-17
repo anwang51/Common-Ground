@@ -137,6 +137,48 @@ def write_article_fox(text, source):
           # print("Warning: bad charcter, recovering")
     f.flush()
 
+def get_cnn_article_text(url):
+    print "called get text"
+    try:
+        page = urllib.urlopen(url)
+    except urllib.HTTPError, e:
+        print e.fp.read()
+
+    soup = BeautifulSoup(page, 'html.parser')
+    texts = soup.findAll('div', attrs = {'class': 'zn-body__paragraph'})
+    texts2 = soup.findAll('div', attrs = {'class': 'zn-body__paragraph speakable'})
+    texts = map( lambda tag: tag.string, texts)
+    texts2 = map( lambda tag: tag.string, texts2)
+    texts = [re.sub(r"\s+", ' ', elem) for elem in texts if elem is not None]
+    texts2 = [re.sub(r"\s+", ' ', elem) for elem in texts2 if elem is not None]
+    texts_c = texts + texts2
+    text = u". ".join(texts_c)
+    return text.strip()
+
+def find_cnn_articles(homepage='https://www.cnn.com/'):
+    try:
+        page = urllib.urlopen(homepage)
+    except urllib.HTTPError, e:
+        print e.fp.read()
+
+    #soup = BeautifulSoup(page, 'html.parser')
+    #divs = soup.findAll('div', attrs={'class': 'cd__content'})
+    soup = BeautifulSoup(page)
+
+    print soup.prettify()
+    links = []
+    for div in divs:
+        first_a = div.find('a')
+        if first_a:
+            a_tags = [first_a] + first_a.find_next_siblings('a')
+            for a in a_tags:
+                try:
+                    link = a['href']
+                    links.append(link)
+                except(KeyError):
+                    pass
+    return links
+
 
 
 def write_article(text, source):
@@ -162,11 +204,14 @@ if __name__ == '__main__':
 
     reuters_links = find_reuters_articles()
     reuters_texts = map(get_reuters_article_text, reuters_links)
-    map(write_article, reuters_texts, itertools.repeat(('reuters'), len(reuters_texts)))"""
+    map(write_article, reuters_texts, itertools.repeat(('reuters'), len(reuters_texts)))
 
     fox_links = find_fox_articles()
     fox_texts = map(get_fox_article_text, fox_links)
-    map(write_article_fox, fox_texts, itertools.repeat(('fox'), len(fox_texts)))
+    map(write_article_fox, fox_texts, itertools.repeat(('fox'), len(fox_texts)))"""
+    cnn_links = find_cnn_articles()
+    cnn_texts = map(get_cnn_article_text, cnn_links)
+    map(write_article, cnn_texts, itertools.repeat(('cnn'), len(cnn_texts)))
 
 
 
