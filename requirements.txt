@@ -5,3 +5,5 @@ google-cloud
 Flask==0.12.2
 gunicorn==19.7.1
 editdistance
+keras
+h5py
