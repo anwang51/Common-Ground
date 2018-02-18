@@ -1,13 +1,13 @@
 <<!DOCTYPE html>
 <html>
 	<head>
-		<title>Commmon Ground</title>
+		<title>Common Ground</title>
 		<meta charset="utf-8" />
-		<!--<script
+		<script
   src="http://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
-  		<script source="{{ url_for('static', filename='bootstrap-4.0.0-beta.2-dist/js/bootstrap.min.js')}}"</script>-->
+  		<script source="{{ url_for('static', filename='bootstrap-4.0.0-beta.2-dist/js/bootstrap.min.js')}}"></script>
 		<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.0.0-beta.2-dist/css/bootstrap.min.css')}}">
 		<link rel="stylesheet2" href="styles.css">
 
@@ -36,8 +36,62 @@
 			<p style="font-size:20px"> Our general approach is to scrape the web for related new article. We then perform k-means clustering and obtain clusters of related news articles. Using this information, we mark up each source, finding claims the different sources have in common, which we weave together into a new article on each topic.</p>
 
 		</div>
+		<div class="container" style="width:50%;padding-top:50px;padding-bottom:50px">
+		<input  type = "text"
+				id = "topicSearch"
+				value = "Type an article topic" />
+		<button onclick="submit();" href="javascript:;">Submit</button>
 
-		<div class="container" style="width:50%;padding-top:50px; padding-bottom:50px">
+		<script>
+			function submit(){
+				var userName = document.getElementById('topicSearch');
+				alert(topicSearch.value);
+			}
+		</script>
+		
+		</div>
+
+
+		<div class="container" style="width:50%;padding-top:50px;padding-bottom:50px">
+		<h2> Sample Articles </h2>
+
+		<h3>On Donald Trump and Mitt Romney:</h3>
+
+		<p>Reuters Staff. 2 Min Read. A new background system will also establish a process for updating senior officials on the end of a background investigation, Kelly said. FBI Director Christopher Wray said earlier this week that the Federal Bureau of Investigation had completed its background investigation of Porter in July and submitted the findings to the White House. The president emerged late on Friday to go to his Mar-a-Lago resort in Florida for the weekend. On Friday, New Yorker magazine reported that Trump had an affair with a former Playboy model at about the same time in 2006 that he was allegedly involved with an adult-film star. PROVO, Utah (Reuters) - Former Republican presidential candidate Mitt Romney, a frequent critic of President Donald Trump, announced on Friday he would run for a U.S. Senate seat in Utah, confirming months of speculation about a return to national politics. During the 2016 presidential campaign, Romney excoriated  Trump as a “fraud” who was “playing the American public for suckers. Trump and Romney spoke in January after Hatch announced his retirement, a White House official said. He then served as governor of Massachusetts from 2003 to 2007.  . Romney first sought the presidency in 2008 but lost the Republican nomination to Arizona Senator John McCain. </p>
+
+		<h3>Nathan Chen and the Olympics:</h3>
+
+		<p>Reuters Staff. 2 Min Read. A new background system will also establish a process for updating senior officials on the end of a background investigation, Kelly said. FBI Director Christopher Wray said earlier this week that the Federal Bureau of Investigation had completed its background investigation of Porter in July and submitted the findings to the White House. The president emerged late on Friday to go to his Mar-a-Lago resort in Florida for the weekend. On Friday, New Yorker magazine reported that Trump had an affair with a former Playboy model at about the same time in 2006 that he was allegedly involved with an adult-film star. PROVO, Utah (Reuters) - Former Republican presidential candidate Mitt Romney, a frequent critic of President Donald Trump, announced on Friday he would run for a U.S. Senate seat in Utah, confirming months of speculation about a return to national politics. During the 2016 presidential campaign, Romney excoriated  Trump as a “fraud” who was “playing the American public for suckers. Trump and Romney spoke in January after Hatch announced his retirement, a White House official said. He then served as governor of Massachusetts from 2003 to 2007.  . Romney first sought the presidency in 2008 but lost the Republican nomination to Arizona Senator John McCain. </p>
+
+		<h3> Russian Election Interferance: </h3>
+
+		<p>The details tell the story of the Russian efforts to mess with U.S. democracy, from the creation of fake social media accounts to identity theft to on-the-ground research in the United States and to the purchase of social media advertising. They paid for a demonstrator “to wear a costume portraying Clinton in a prison uniform” and wired money to someone in the United States “to build a cage large enough to hold an actress portraying Clinton in a prison uniform. Was it Russian efforts to trash Clinton and help Trump with false information? Yet the president has long resisted every piece of evidence pointing in this direction, and as a result, he has done nothing about it. He has not answered a direct question about the findings, nor has he been asked what he thinks should be done about them. You would think Mr. Trump would take a moment to repudiate that support, even in hindsight, and to declare that no foreign power has a right to campaign secretly against an American candidate. Second, Mr. Mueller has not finished his investigation and has not ruled out the possibility of collusion. We don’t yet know whether Donald Trump Jr.’s eagerness to meet with Russians offering “dirt” on Ms. Clinton’s campaign was an isolated incident. Nor has the special counsel yet weighed in on the question of possible obstruction of his investigation by President Trump.  . We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites. </p>
+
+		<h3> Election 2016: </h3>
+
+		<p>The details tell the story of the Russian efforts to mess with U.S. democracy, from the creation of fake social media accounts to identity theft to on-the-ground research in the United States and to the purchase of social media advertising. They paid for a demonstrator “to wear a costume portraying Clinton in a prison uniform” and wired money to someone in the United States “to build a cage large enough to hold an actress portraying Clinton in a prison uniform. Was it Russian efforts to trash Clinton and help Trump with false information? Yet the president has long resisted every piece of evidence pointing in this direction, and as a result, he has done nothing about it. He has not answered a direct question about the findings, nor has he been asked what he thinks should be done about them. You would think Mr. Trump would take a moment to repudiate that support, even in hindsight, and to declare that no foreign power has a right to campaign secretly against an American candidate. Second, Mr. Mueller has not finished his investigation and has not ruled out the possibility of collusion. We don’t yet know whether Donald Trump Jr.’s eagerness to meet with Russians offering “dirt” on Ms. Clinton’s campaign was an isolated incident. Nor has the special counsel yet weighed in on the question of possible obstruction of his investigation by President Trump.  . We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites. </p>
+
+		<h3> Lindsey Vonn, Olympics 2018: </h3>
+		<p> The final stage of Lindsey Vonn's journey back to the Olympics wound past lonely farmhouses and ice-choked rivers along the narrow road up to the Jeongseon Alpine Centre. But Vonn's blitz down the glistening super-G course at the Pyeongchang Olympics on Saturday ended in disappointment. She finished tied for sixth and wondered what might have been if not for a time-killing mistake on a turn late in the race. And there's the heartbreak that includes a divorce in early 2013 and a relationship with Tiger Woods before they split up in 2015.. All the while, Vonn piled up victories on the World Cup circuit. A pair of downhill wins this month pushed her career total to 81. That's the most by any woman and short of only the 86 by Sweden's Ingemar Stenmark. Vonn started first Saturday, putting her in the difficult position of not getting feedback on the course conditions from other skiers and fighting a headwind. In the final stretch, she took a sharp left turn too wide and almost lost control. After skidding to a stop in front of the grandstand  supporters had a sign reading "She wins if she Vonns"  she shook her head, then mouthed: "I tried". The 26th skier to start, Ester Ledecka of the Czech Republic, is a snowboarding champion with only a handful of podium finishes in World Cup events.  </p>
+
+		<h3> Florida School Shooting: </h3>
+
+		<p> Up the street from Douglas High School on Friday afternoon, a dozen protesters hoisted gun control signs and chanted "Use your voice, make a choice"! At Marjory Stoneman Douglas High School, so many freshmen classes are held in Building 12 that the "1200 building," as it is commonly called, is also known as "the freshmen building". Freshman Isaah Jean was in study hall in the building when the shooting started Wednesday afternoon. Isaah saw his friend Martin Duque Anguiano duck into study hall, then disappear just as the gunfire erupted. Isaah moved to Parkland from Boston last year with his Haitian American family, drawn by the promise of Florida's safest city, shielded by what locals call "the Parkland bubble". Alyssa's mother, Lori Alhadeff, alluded to her daughter's youth when she raged at President Trump in a CNN interview this week, imploring him to take action on guns: "I just spent the last two hours [making] the burial arrangements for my daughter, who is 14. President Trump, please do something. Frances Marion, a psychiatric social worker for LAUSD and a UTLA representative, sounded exhausted Friday afternoon following another week of overwhelming demand for her services. Over just a few days in January, Dr. Waronker posted a letter on the district’s website, accusing the board majority of stymieing his effort to transform the district and of “patronage, vendettas, threats and cover-ups. ” The State Education Department released a scathing report prepared by a retired superintendent, detailing the district’s record of dismal results and questionable spending, and effectively criticizing both the board and Dr. Waronker. So when a fire alarm went off inside Marjory Stoneman Douglas High School and teachers began screaming “Code red!  </p>
+
+		<h3> #MeToo </h3>
+
+		<p>Reuters Staff. 3 Min Read. French actress Catherine Deneuve and 99 other French women signed a column in Le Monde in January saying the #MeToo campaign had gone too far and was fueled by a “hatred of men”. On Saturday, European film industry workers launched a campaign called “Speak Up! “Eva” is one of 19 films competing for the Berlinale’s Golden and Silver Bears to be handed out on Feb. 3 Min Read. , he was quoted as saying. Certainly the scale and intensity of the attacks feels out of proportion to the level of culpability. McMaster accused Iran of escalating a campaign to increase its influence in the Middle East by building and arming “Hezbollah-style” proxy armies in Iraq, Syria and elsewhere as it has done in Lebanon. “We hear more and more signals from Washington to the extent that they are considering revisiting the participation in the treaty. </p>
+
+		<h3> The Market: </h3>
+
+		<p>While prices of imports from China were unchanged for a  second straight month, they increased on a year-on-year basis for the first time since October 2014. . “Going forward, we expect higher import prices to feed through to firming producer and consumer prices domestically,” said Gregory Daco, chief U.S. economist at Oxford Economics in New York. NEW YORK (Reuters) - The dollar rose and stocks around the globe rallied for a sixth straight session on Friday to post their best week in more than two years, but a U.S. indictment over alleged Russian meddling in the 2016 presidential election cooled gains on Wall Street. Analysts continue to underestimate the pace of global growth, which has led more companies to meet or beat analysts’ earnings expectations than in any quarter in 20 years, according to calculations earlier this week by Credit Suisse. Investors also are concerned about how the Federal Reserve will deal with still-low inflation without killing an economy and inflate asset bubbles, said Michael Arone, chief investment strategist at State Street Global Advisors in Boston. “It looks like this week they’re comfortable about uncertainty and the risks that are associated with it, and stocks are moving higher based on fundamentals,” he said. U.S. Treasury prices rose as investors bought back bonds after a sell-off earlier in the week as investor jitters over rising inflation raised the possibility the Federal Reserve may hike interest rates at a faster pace than expected this year. NEW YORK (Reuters) - The S&P; 500 rose marginally on Friday to mark its biggest weekly increase in five years, although earlier gains evaporated after the indictment of Russians for meddling in the 2016 presidential election sent investors into defensive mode before a long weekend. The office of U.S. Special Counsel Robert Mueller charged 13 Russian nationals and three Russian companies accused of interfering with U.S. elections in an effort to support then-candidate Donald Trump. You’ve had such a rally for the week, and people have been looking for an excuse to take profits heading into the weekend,” said Dennis Dick, a proprietary trader at Bright Trading LLC in Las Vegas. Advancing issues outnumbered declining ones on the NYSE by a 1.43-to-1 ratio; on Nasdaq, a 1.34-to-1 ratio favored advancers. </p>
+
+		<h3> Broadcom and Qualcomm antitrust dispute </h3>
+		<p>ISS recommended that Broadcom nominees Samih Elhage, Julie Hill, John Kispert and Harry You should be elected as Qualcomm board directors. San Diego-based Qualcomm primarily outsources the manufacturing of its chips which are used for the delivery of broadband and data, a business that would significantly benefit from the rollout of 5G wireless technology. ISS also said it appeared more likely than not that Broadcom and Qualcomm, with their collective experience and resources, can find a reasonable path to regulatory approval, despite Qualcomm’s current concerns about antitrust risk. 50, significantly above Qualcomm’s $110 per share all-cash offer, as some NXP shareholders, led by activist hedge fund Elliott Management Corp, have called on Qualcomm to raise its price. While the current Broadcom proposal is unacceptable, our board is intensely focused on maximizing value for Qualcomm stockholders, whether through executing on its growth strategy or by selling the company, Qualcomm Chairman Paul Jacobs wrote to Broadcom CEO Hock Tan on Friday in a letter released by Qualcomm. 14 was the first time the two companies met to discuss a potential combination since Broadcom unveiled its unsolicited bid last November. Broadcom has already said it is willing to sell two Qualcomm businesses to resolve any antitrust problems. In the meeting, Broadcom agreed to divest if needed its own Wi-Fi business, instead of a source familiar with the confidential details of the meeting said. Broadcom is mainly a manufacturer whose connectivity chips are used in products ranging from mobile phones to servers. San Diego-based Qualcomm primarily outsources the manufacturing of its chips which are used for the delivery of broadband and data, a business that would significantly benefit from the rollout of 5G wireless technology. </p>
+	</div>
+
+
+		<!-- <div class="container" style="width:50%;padding-top:50px; padding-bottom:50px">
 			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 				  <div class="carousel-inner" role="listbox">
 				    <div class="carousel-item active">
@@ -57,15 +111,15 @@
 				    </div>
 				  </div>
 				  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="carousel-control-prev-icon" aria-hidden="false"></span>
 				    <span class="sr-only">Previous</span>
 				  </a>
 				  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="carousel-control-next-icon" aria-hidden="false"></span>
 				    <span class="sr-only">Next</span>
 				  </a>
 			</div>
-		</div>
+		</div> -->
 
 
 		<div class="container" style="width:50%;padding-top:50px; padding-bottom:50px">
