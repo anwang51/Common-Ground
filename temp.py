@@ -1,20 +1,12 @@
-from flask import Flask, render_template, request
-import os
-import requests
-import json
-from utils import vectorize_text
+from articles import Article
 from utils import similarity
 from utils import correlate_text
 from cluster import group_sentences
-from utils import correlate_text
-from articles import Article
 from utils import create_title
+import os
 
-app = Flask(__name__)
-
-@app.route('/', methods=["POST","GET"])
 def generate_article():
-    keywords = request.form.get("topic")
+    keywords = "Trump Mueller indictment"
     if keywords == None:
         return None
     else:
@@ -56,9 +48,5 @@ def generate_article():
         else:
             title = "Sorry, we couldn't find any related articles!"
         #generate the text and display some how
-        return render_template("home.html", title=title, article=art_text)
 
-if __name__ == '__main__':
-    app.run(host="127.0.0.1", port=8080, debug=True)
-
-
+generate_article()
