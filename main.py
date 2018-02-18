@@ -22,6 +22,7 @@ def generate_article():
         kwords = []
         for word in keywords:
             kwords.append(word.lower())
+        keywords = kwords
 
         articles = []
         for file in os.listdir("articles/"):
