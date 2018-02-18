@@ -5,7 +5,6 @@ import math
 import random
 import glob
 import numpy as np
-
 punctuation_pat = re.compile("[A-Z]*[a-z]*[\.\,]")
 
 """Following function by D Greenberg and Deduplicator from https://stackoverflow.com/questions/4576077/python-split-text-on-sentences"""
@@ -161,6 +160,13 @@ def normalize_text(v1):
             return [0]
         v1[k] = v1[k] / magnitude
     return v1
+
+def similarity(v1, keywords):
+    total = 0
+    for word in keywords:
+        if word in v1:
+            total += v1[word]
+    return total
 
 def dot_text(v1, v2):
     dot_sum = 0

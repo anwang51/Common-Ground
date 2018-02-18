@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Common Ground</title>
@@ -14,16 +14,10 @@
 	</head>
 	
 	<body>
-		<nav class="navbar sticky-top navbar-light" style="background-color:#262922">
+		<nav class="navbar sticky-top navbar-light" style="height:50px;background-color:#262922">
 			<a class="navbar-brand" href="/index">
     			<!-- <img src="{{ url_for('static', filename='real_new_logo.png')}}" width="70" height="60" alt=""> -->
   			</a>
-  			<div class="justify-content-start ">
-				<!--<div class="row">
-					<a style="color:white; font-size:20px" class="nav-link" href='/about'>About Us</a>
-					<a style="color:white; font-size:20px" class="nav-link" href='/contact'>Contact Us</a>
-				</div>-->
-			</div>
 		</nav>
 		<div class="container" style="width:50%;padding-top:50px; padding-bottom:50px">
 			<h1>COMMON GROUND</h1>
@@ -37,20 +31,26 @@
 
 		</div>
 		<div class="container" style="width:50%;padding-top:50px;padding-bottom:50px">
-		<input  type = "text"
-				id = "topicSearch"
-				value = "Type an article topic" />
-		<button onclick="submit();" href="javascript:;">Submit</button>
+		<form action="/" method="POST">
+			<input  type = "text"
+					id = "topicSearch"
+					name = "topic"
+					value = "Type an article topic" />
+			<input type="submit"/>
+		</form>
 
-		<script>
+		<!--<script>
 			function submit(){
-				var userName = document.getElementById('topicSearch');
-				alert(topicSearch.value);
+				var inp = document.getElementById("topicSearch");
+				return inp.elements[0].value;
 			}
-		</script>
-		
+		</script>-->
 		</div>
 
+		<div class="container" style="width:50%;padding-top:0px; padding-bottom:50px">
+			<h2 style="padding-bottom:10px">{{ title }}</h2>
+			<p style="font-size:20px">{{ article }}</p>
+		</div>
 
 		<div class="container" style="width:50%;padding-top:50px;padding-bottom:50px">
 		<h2> Sample Articles </h2>
@@ -91,7 +91,7 @@
 	</div>
 
 
-		<!-- <div class="container" style="width:50%;padding-top:50px; padding-bottom:50px">
+		<!--<div class="container" style="width:50%;padding-top:50px; padding-bottom:50px">
 			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 				  <div class="carousel-inner" role="listbox">
 				    <div class="carousel-item active">
@@ -119,7 +119,7 @@
 				    <span class="sr-only">Next</span>
 				  </a>
 			</div>
-		</div> -->
+		</div>-->
 
 
 		<div class="container" style="width:50%;padding-top:50px; padding-bottom:50px">
