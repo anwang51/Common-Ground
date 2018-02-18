@@ -4,6 +4,7 @@
 		<title>Commmon Ground</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.0.0-beta.2-dist/css/bootstrap.min.css')}}">
+		<link rel="stylesheet2" href="styles.css">
 	</head>
 	<body>
 		<nav class="navbar sticky-top navbar-light" style="background-color:#262922">
@@ -29,6 +30,18 @@
 			
 			<p style="font-size:20px"> Our general approach is to scrape the web for related new article. We then perform k-means clustering and obtain clusters of related news articles. Using this information, we mark up each source, findng claims the different sources have in common, which we weave together into a new article on each topic.</p>
 
+		</div>
+
+		<div class="article">
+			<div id="list">
+				<p>
+					<iframe src="output_articles/0.8819495952.txt" frameborder="0" height="400"
+			      width="95%"></iframe>
+				</p>
+			</div>
+		</div>
+
+
 
 			<p style="font-size:20px">Our Sources:</p> 
 			<img src="../templates/wp-logo.jpg" alternate="The Washington Post"/>
@@ -36,7 +49,6 @@
 			<img src="../templates/fox-logo.jpg" alternate="Fox News"/>
 			<img src="../templates/nyt-logo.jpg" alternate="The New York Times"/>
 			<img src="../templates/lat-logo.jpg" alternate="The LA Times"/>
-
 
 
 
