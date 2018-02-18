@@ -7,6 +7,10 @@ from cluster import common_keywords
 from utils import vectorize_text
 from utils import split_sentences
 from utils import self_correlate
+from utils import bow_caps
+from utils import average_sentiment
+from utils import words_sentiment
+from utils import create_title
 
 CUTOFF = 0.5
 

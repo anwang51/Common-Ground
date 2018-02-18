@@ -1,5 +1,6 @@
 import re
 from nltk.corpus import stopwords
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import math
 import random
 import glob
@@ -51,16 +52,48 @@ def bag_of_words(text):
         words = line.split(" ")
         for word in words:
             word = word.lower()
-            if isPlural(word):
-                word = word[:len(word)-1]
-            if not (word in stopwords.words('english')) and len(word) > 0:
-                count += 1
-                if punctuation_pat.match(word):
-                    word = word[:-1]
-                if word in word_count:
-                    word_count[word] += 1
-                else:
-                    word_count[word] = 1
+            if word == "wa" or word == "fla":
+                pass
+            else:
+                if isPlural(word):
+                    word = word[:len(word)-1]
+                if not (word in stopwords.words('english')) and len(word) > 0:
+                    count += 1
+                    if punctuation_pat.match(word):
+                        word = word[:-1]
+                    if word in word_count:
+                        word_count[word] += 1
+                    else:
+                        word_count[word] = 1
+    sorted_words = sorted(word_count, key=lambda x: word_count[x])
+    sorted_pairs = []
+    i = len(sorted_words) - 1
+    while i >= 0:
+        word = sorted_words[i]
+        sorted_pairs.append((word, float(word_count[word]) / count))
+        i -= 1
+    return sorted_pairs
+
+def bow_caps(text):
+    sentence_lists = split_sentences(text)
+    word_count = {}
+    count = 0
+    for line in sentence_lists:
+        words = line.split(" ")
+        for word in words:
+            if word == "wa" or word == "fla":
+                pass
+            else:
+                if isPlural(word):
+                    word = word[:len(word)-1]
+                if not (word in stopwords.words('english')) and len(word) > 0:
+                    count += 1
+                    if punctuation_pat.match(word):
+                        word = word[:-1]
+                    if word in word_count:
+                        word_count[word] += 1
+                    else:
+                        word_count[word] = 1
     sorted_words = sorted(word_count, key=lambda x: word_count[x])
     sorted_pairs = []
     i = len(sorted_words) - 1
@@ -154,6 +187,49 @@ def scramble_sentences(lst):
     org_indices = np.random.permutation(len(lst))
     scrambled = [lst[i] for i in org_indices]
     return (scrambled, org_indices)
+
+def words_sentiment(text):
+    analyzer = SentimentIntensityAnalyzer()
+    word_values = {}
+    sentences = split_sentences(text)
+    all_words = bag_of_words(text)
+    for sentence in sentences:
+        sentence_score = analyzer.polarity_scores(sentence)["compound"]
+        for word in all_words:
+            if word in word_values:
+                word_values[word] += sentence_score
+            else:
+                word_values[word] = sentence_score
+    return word_values
+
+def average_sentiment(text):
+    analyzer = SentimentIntensityAnalyzer()
+    sentences = split_sentences(text)
+    score = 0
+    for sentence in sentences:
+        score += analyzer.polarity_scores(sentence)["compound"]
+    return score
+
+def create_title(text):
+    nouns = bow_caps(text)[0:3]
+    words = text.split(" ")
+    title = ""
+    visited = set()
+    for word in words:
+        for noun in nouns:
+            if noun[0] == word and noun not in visited:
+                title += noun[0] + " "
+                visited.add(noun)
+    sentiment = average_sentiment(text)
+    word_sent = words_sentiment(text)
+    ordered_words = []
+    for word in word_sent:
+        weight = sentiment * word_sent[word]
+        ordered_words.append((weight, word))
+    ordered_words = sorted(ordered_words, key=lambda x: -x[0])
+    title += ordered_words[0][1][0] + " "
+    title += ordered_words[1][1][0] + " "
+    return title
 
 # def vectorize_sentence(sentence):
 #     words = sentence.strip().split()
