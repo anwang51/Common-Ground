@@ -56,6 +56,8 @@ def generate_article():
         else:
             title = "Sorry, we couldn't find any related articles!"
         #generate the text and display some how
+        title = title.encode('utf8')
+        art_text = art_text.encode('utf8')
         return render_template("home.html", title=title, article=art_text)
 
 if __name__ == '__main__':

@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!-- <title>Common Ground</title> -->
-		<div class="container" style="width:95%;">
-			<img src="{{url_for('static', filename='commonground-logo.png')}}" width='120px' height='40px' alternate="Commmon Ground Logo"/>
-		</div>
+		<title>Common Ground</title>
 		<meta charset="utf-8" />
 		<script
   src="http://code.jquery.com/jquery-3.3.1.js"
@@ -17,8 +14,11 @@
 	</head>
 	
 	<body>
-		<nav class="navbar sticky-top navbar-light" style="height:50px;background-color:#262922">
-			<a class="navbar-brand" href="/index">
+		<nav class="navbar sticky-top navbar-light" style="height:60px;background-color:#262922">
+			<a class="navbar-brand" href="/">
+				<div class="container" style="width:20%;">
+					<img src="{{url_for('static', filename='commonground-white.png')}}" width='120px' height='40px' alternate="Commmon Ground White Logo"/>
+				</div>
     			<!-- <img src="{{ url_for('static', filename='real_new_logo.png')}}" width="70" height="60" alt=""> -->
   			</a>
 		</nav>
