@@ -56,9 +56,9 @@ def generate_article():
         else:
             title = "Sorry, we couldn't find any related articles!"
         #generate the text and display some how
-        title = title.encode('utf8')
+        tit_text = title.encode('utf8')
         art_text = art_text.encode('utf8')
-        return render_template("home.html", title=title, article=art_text)
+        return render_template("home.html", title=tit_text, article=art_text)
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=8080, debug=True)
