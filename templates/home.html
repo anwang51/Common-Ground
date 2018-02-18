@@ -22,36 +22,31 @@
 			<h1>COMMON GROUND</h1>
 		</div>
 		<div class="container" style="width:50%;padding-top:0px; padding-bottom:50px">
-			<h2 style="padding-bottom:10px"> Good Neighbor:</h2>
+			<h2 style="padding-bottom:10px"> Real, Unbiased News:</h2>
 			<p style="font-size:20px">Fake news has become an increasingly prevlenet and problematic aspectof the modern media landscape. By appealing to our inate trust in news agencies, it both weakens the pillars of our democracty and imapcts our abilities to respecfully discuss with each other.</p>
-		</div>
-		<div class="container" style="width:50%">
 			<p style="font-size:20px">Common Ground addresses both traditional fake news (those masquerading as legitimate news agencies) and also the increasely politicized mainstream media through the same technique: unsupervised cross source news generation</p>
 			
 			<p style="font-size:20px"> Our general approach is to scrape the web for related new article. We then perform k-means clustering and obtain clusters of related news articles. Using this information, we mark up each source, findng claims the different sources have in common, which we weave together into a new article on each topic.</p>
 
 		</div>
 
-		<div class="article">
+		<div class="container" style="width:50%;padding-top:50px; padding-bottom:50px">
 			<div id="list">
 				<p>
-					<iframe src="output_articles/0.8819495952.txt" frameborder="0" height="400"
-			      width="95%"></iframe>
+					<iframe src="{{url_for('static', filename='0.8819495952.txt')}}" frameborder="0" height="400" width="95%"></iframe>
 				</p>
 			</div>
 		</div>
 
 
-
+		<div class="container" style="width:50%;padding-top:50px; padding-bottom:50px">
 			<p style="font-size:20px">Our Sources:</p> 
-			<img src="../templates/wp-logo.jpg" alternate="The Washington Post"/>
-			<img src="../templates/reuters-logo.jpg" alternate="Reuters"/>
-			<img src="../templates/fox-logo.jpg" alternate="Fox News"/>
-			<img src="../templates/nyt-logo.jpg" alternate="The New York Times"/>
-			<img src="../templates/lat-logo.jpg" alternate="The LA Times"/>
-
-
-
+			<img src="{{url_for('static', filename='wp-logo.jpg')}}" alternate="The Washington Post"/>
+			<img src="{{url_for('static', filename='reuters-logo.png')}}" alternate="Reuters"/>
+			<img src="{{url_for('static', filename='fox-logo.png')}}" alternate="Fox News"/>
+			<img src="{{url_for('static', filename='nyt-logo.jpg')}}" alternate="The New York Times"/>
+			<img src="{{url_for('static', filename='lat-logo.png')}}" alternate="The LA Times"/>
+		</div>
 			
 			
 		</div>
