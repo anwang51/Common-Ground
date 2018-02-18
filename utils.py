@@ -142,6 +142,13 @@ def correlate_text(v1, v2):
     v2 = normalize_text(v2)
     return dot_text(v1, v2)
 
+def self_correlate(text):
+    first = text[:len(text) / 2]
+    second = text[(len(text) / 2) + 1:]
+    v1 = vectorize_text(first)
+    v2 = vectorize_text(second)
+    return correlate_text(v1, v2)
+
 def scramble_sentences(lst):
     #returns a tuple (scrambled list, original indices)
     org_indices = np.random.permutation(len(lst))

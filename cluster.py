@@ -76,10 +76,12 @@ def common_keywords(grouping):
 def group_sentences(grouping):
 	analyzer = SentimentIntensityAnalyzer()
 	sentences = []
+	sources = set()
 	for article in grouping:
 		summarized = summarize(article.content, 15)
 		processed_summarized = []
 		for sentence in summarized:
+			sources.add(article.source)
 			processed_summarized.append((sentence, "source " + article.source))
 		sentences.extend(processed_summarized)
 	common = common_keywords(grouping)
@@ -97,4 +99,4 @@ def group_sentences(grouping):
 	for sentence in sentences:
 		if sentence in scoring:
 			final_output.append(sentence)
-	return final_output
+	return final_output, sources

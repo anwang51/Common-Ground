@@ -8,7 +8,7 @@ import numpy as np
 
 INPUT_MAX = 2500
 NUM_CLASSES = 2
-EPOCHS = 200
+EPOCHS = 2000
 
 AdamOptimizer = tf.train.AdamOptimizer
 
@@ -43,7 +43,8 @@ def process_data(data):
 	# x = np.array([np.array([0 for _ in range(INPUT_MAX)])])
 	y = np.array([0])
 	i = 0
-	for sentence in data:
+	while i < 250:
+		sentence = data[int(random.uniform(0, len(data) - 1))]
 		temp = np.array([0])
 		sentence = list(sentence)
 		first_half = sentence[: len(sentence) / 2]
@@ -90,16 +91,15 @@ model.add(Conv1D(128, 4, strides=2, padding='valid', activation='relu'))
 model.add(MaxPooling1D(4, strides=2, padding='valid'))
 model.add(Flatten())
 model.add(Dense(2048, activation='relu'))
-# model.add(Dropout(0.5))
+model.add(Dropout(0.5))
 model.add(Dense(2, activation='softmax'))
 model.compile(loss=keras.losses.sparse_categorical_crossentropy, optimizer=AdamOptimizer(learning_rate=0.001), metrics=['accuracy'])
 
 i = 0
 while i < EPOCHS:
 	model.fit(x, y, batch_size=32)
-	if i % 20 == 0:
+	if i % 200 == 0:
 		model.save("coherent_models/coherency" + str(i) + ".h5")
 	i += 1
-	if i > 40:
-		x, y = process_data(all_files)
+	x, y = process_data(all_files)
 	print("Epoch: ", i)

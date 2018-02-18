@@ -33,7 +33,13 @@ def find_reuters_articles(homepage='https://www.reuters.com/'):
             a_tags = [first_a] + first_a.find_next_siblings('a')
             for a in a_tags:
                 links += [homepage + a['href']]
-    
+    final_links = []
+    for link in links:
+        try:
+            page = urllib.urlopen(link)
+            final_links.append(link)
+        except:
+            pass    
     return links
 
 
@@ -71,11 +77,18 @@ def find_washpo_articles(homepage='https://www.washingtonpost.com'):
                             links += [homepage + a['href']]
                 except(KeyError):
                     pass
-
+    final_links = []
+    for link in links:
+        try:
+            page = urllib.urlopen(link)
+            final_links.append(link)
+        except:
+            pass
     return links
 
 
 def get_fox_article_text(url):
+    fail = False
     try:
         page = urllib.urlopen(url)
     except urllib.HTTPError, e:
@@ -120,8 +133,14 @@ def find_fox_articles(homepage='https://www.foxnews.com'):
                         links.append(link)
                 except(KeyError):
                     pass
-
-    return links
+    final_links = []
+    for link in links:
+        try:
+            page = urllib.urlopen(link)
+            final_links.append(link)
+        except:
+            pass
+    return final_links
 
 def write_article_fox(text, source):
     # url = 'https://www.reuters.com/article/us-usa-trump-russia-indictment/u-s-charges-russians-with-2016-u-s-election-tampering-to-boost-trump-idUSKCN1G022U'
@@ -223,7 +242,7 @@ def find_nyt_articles(homepage='https://www.nytimes.com'):
             for a in a_tags:
                 try:
                     link = a['href']
-                    if 'graphics' not in link and 'twitter' not in link and 'photos' not in link:   
+                    if 'graphics' not in link and 'twitter' not in link and 'photos' not in link and 'facebook' not in link:   
                         # print link   
                         if homepage[6:] in link:
                             links += [link]
@@ -231,7 +250,14 @@ def find_nyt_articles(homepage='https://www.nytimes.com'):
                             links += [homepage + a['href']]
                 except(KeyError):
                     pass
-
+    final_links = []
+    for link in links:
+        try:
+            page = urllib.urlopen(link)
+            if (len(link.split("https"))<=2):
+                final_links.append(link)
+        except:
+            pass
     return links
 
 
@@ -257,7 +283,13 @@ def find_lat_articles(homepage='https://www.latimes.com/'):
                             links += [homepage + a['href']]
                 except(KeyError):
                     pass
-
+    final_links = []
+    for link in links:
+        try:
+            page = urllib.urlopen(link)
+            final_links.append(link)
+        except:
+            pass
     return links
 
 def get_lat_article_text(url):
@@ -280,7 +312,6 @@ if __name__ == '__main__':
     # washpo_texts = map(get_washpo_article_text, washpo_links)
     # map(write_article, washpo_texts, itertools.repeat(('washpo'), len(washpo_texts)))
 
-
     # reuters_links = find_reuters_articles()
     # reuters_texts = map(get_reuters_article_text, reuters_links)
     # map(write_article, reuters_texts, itertools.repeat(('reuters'), len(reuters_texts)))
@@ -289,13 +320,13 @@ if __name__ == '__main__':
     # fox_texts = map(get_fox_article_text, fox_links)
     # map(write_article_fox, fox_texts, itertools.repeat(('fox'), len(fox_texts)))
 
-    # nyt_articles = find_nyt_articles()
-    # nyt_texts = map(get_nyt_article_text, nyt_articles)
-    # map(write_article, nyt_texts, itertools.repeat('nyt', len(nyt_texts)))
+    nyt_articles = find_nyt_articles()
+    nyt_texts = map(get_nyt_article_text, nyt_articles)
+    map(write_article  , nyt_texts, itertools.repeat('nyt', len(nyt_texts)))
 
-    lat_articles = find_lat_articles()
-    lat_texts = map(get_lat_article_text, lat_articles)
-    map(write_article, lat_texts, itertools.repeat('lat', len(lat_texts)))
+    # lat_articles = find_lat_articles()
+    # lat_texts = map(get_lat_article_text, lat_articles)
+    # map(write_article, lat_texts, itertools.repeat('lat', len(lat_texts)))
 
     # cnn_links = find_cnn_articles()
     # cnn_texts = map(get_cnn_article_text, cnn_links)
