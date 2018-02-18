@@ -7,3 +7,7 @@ gunicorn==19.7.1
 editdistance
 keras
 h5py
+
+nltk
+vaderSentiment
+sklearn
