@@ -16,7 +16,7 @@ app = Flask(__name__)
 def generate_article():
     keywords = request.form.get("topic")
     if keywords == None:
-        return None
+        return render_template("home.html")
     else:
         keywords = keywords.split(" ")
         kwords = []
