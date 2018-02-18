@@ -48,5 +48,7 @@ def generate_article():
         else:
             title = "Sorry, we couldn't find any related articles!"
         #generate the text and display some how
+        print(title)
+        print(art_text)
 
 generate_article()
