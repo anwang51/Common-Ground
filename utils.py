@@ -7,6 +7,7 @@ import glob
 import numpy as np
 
 punctuation_pat = re.compile("[A-Z]*[a-z]*[\.\,]")
+caps_pat = re.compile("[A-Z]")
 
 """Following function by D Greenberg and Deduplicator from https://stackoverflow.com/questions/4576077/python-split-text-on-sentences"""
 caps = "([A-Z])"
@@ -83,6 +84,11 @@ def bow_caps(text):
         for word in words:
             if word == "wa" or word == "fla":
                 pass
+            elif caps_pat.match(word):
+                if word in word_count:
+                    word_count[word] += 3
+                else:
+                    word_count[word] = 3
             else:
                 if isPlural(word):
                     word = word[:len(word)-1]
